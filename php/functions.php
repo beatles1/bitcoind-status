@@ -289,6 +289,31 @@ function getFreeDiskSpace()
 }
 
 /**
+ * Gets size of blockchain on disk
+ *
+ * @return String
+ */
+function getBlockchainSize()
+{
+	global $config;
+	
+	$f = $config['blockchain_location'];
+	$io = popen ( '/usr/bin/du -sk ' . $f, 'r' );
+	if ($io) {
+		$bytes = fgets ( $io, 4096);
+		$bytes = substr ( $bytes, 0, strpos ( $bytes, "\t" ) );
+		pclose ( $io );
+		
+		if ($bytes) {
+			$sz = 'BKMGTP';
+			$factor = floor((strlen($bytes) - 1) / 3);
+			return sprintf("%.{2}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+		}
+	}
+	return "Unknown";
+}
+
+/**
  * Formats a number into SI storage units
  *
  * @param Int $bytes The number of bytes to convert

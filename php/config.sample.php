@@ -42,6 +42,8 @@ $config = array(
   // UI
   'display_ip'                => false,
   'display_free_disk_space'   => false,
+  'display_blockchain_size'   => false,
+  'blockchain_location'       => "not_set",
   'display_testnet'           => false,
   'display_version'           => true,
   'display_github_ribbon'     => true,

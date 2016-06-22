@@ -118,6 +118,9 @@
           <span class="label">Node Height:</span> <?php echo $data['blocks']; ?>
           <?php if($config['display_max_height'] === true){ ?> (<?php echo $data['node_height_percent'] ?>%)<?php } ?>
       </p>
+<?php if (isset($config['display_blockchain_size']) && $config['display_blockchain_size'] && isset($config['blockchain_location']) && $config['blockchain_location'] != 'not_set') { ?>
+      <p class="stat"><span class="label">Blockchain Size:</span> <?php echo getBlockchainSize(); ?></p>
+<?php } ?>
 <?php if (isset($data['max_height']) === true) { ?>
       <p class="stat"><span class="label">Network Height:</span> <?php echo $data['max_height']; ?></p>
 <?php } ?>
